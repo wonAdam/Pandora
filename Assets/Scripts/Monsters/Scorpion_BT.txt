@@ -1,0 +1,40 @@
+tree("Root")
+	repeat
+		mute
+			fallback
+				tree "Rotate"
+				tree "Move"
+				tree "Attack"
+				tree "Idle"
+			
+tree("Rotate")
+	fallback
+		while 
+			ShouldTurnAround // MonsterAI
+			TurnAround // MonsterAI
+		while
+			not IsPlayerFront // MonsterAI
+			ChangeDirection // MonsterAI
+
+tree("Move")
+	while
+		parallel // AND
+			IsPlayerFarEnough
+			IsShootingCoolTime
+			not IsInShootingState
+			not FallDetect // MonsterAI
+			not WallDetect // MonsterAI
+		WalkFront // MonsterAI
+
+tree("Attack")
+	while
+		parallel // AND
+			IsPlayerFront
+			IsPlayerInShootingRange
+			not IsShootingCoolTime
+			not IsInShootingState
+		Shoot
+		
+
+tree("Idle")
+	Idle // MonsterAI

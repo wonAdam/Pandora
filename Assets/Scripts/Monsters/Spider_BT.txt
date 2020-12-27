@@ -1,0 +1,43 @@
+tree("Root")
+	repeat
+		mute
+			fallback
+				tree "Rotate"
+				tree "Dash"
+				tree "Idle"
+
+tree("Rotate")
+	fallback
+		while
+			ShouldTurnAround // MonsterAI
+			parallel
+				TurnAround // MonsterAI
+				Idle // MonsterAI
+		while
+			not IsPlayerFront // MonsterAI
+			ChangeDirection // MonsterAI
+
+tree("Dash")
+	fallback
+		while
+			parallel
+				IsInDashingState
+				race
+					IsArrivedAtDestination
+					WallDetect // MonsterAI
+					FallDetect // MonsterAI
+			EndDash
+		while
+			IsInDashingState
+			ProcessDash
+		while
+			parallel
+				IsPlayerFront // MonsterAI
+				IsPlayerInDashRange
+				not IsDashingCoolTime
+				not IsInDashingState
+			StartDash
+
+tree("Idle")
+	Idle // MonsterAI
+

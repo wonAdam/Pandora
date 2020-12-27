@@ -1,0 +1,27 @@
+tree("Root")
+	repeat
+		mute 
+			fallback
+				tree "Rotate"
+				tree "Move" 
+				
+tree("Rotate")
+	fallback
+		tree "TurnAround"
+		tree "Detect"
+
+tree("TurnAround")
+	while 
+		ShouldTurnAround
+		TurnAround
+	
+tree("Detect")
+	while 
+		race
+			FallDetect
+			WallDetect	
+		ChangeDirection
+					
+tree("Move")
+	WalkFront
+		
