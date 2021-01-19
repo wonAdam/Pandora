@@ -13,7 +13,7 @@ Gameplay Video 1, 2
 
 > 실행 파일 : https://drive.google.com/file/d/1sIPFxepT37GrKrtd8ZaBDTVVAXwDgLma/view?usp=sharing
 
-Executable File (Hope You Enjoy)
+Executable File
 
 
 > **3D** / **플랫포머** / **PC** 게임입니다.
