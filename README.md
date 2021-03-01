@@ -2,7 +2,7 @@
 
 > <Smilegate Challenge Season 2> 에 참여하여 작업한 프로젝트입니다.
 
-I have worked on this project in 2020 winter vacation joining Smilegate Challenge Season 2.
+I have worked on this project in the 2nd semester of 2020, joining Smilegate Challenge Season 2.
 
 
 > 플레이 영상 1 : https://youtu.be/e4FN4WuiXFo
@@ -35,7 +35,7 @@ Dev Period : 2020.10.25 ~ 2020.12.22
 
 > **그래픽** : 김동연
 
-> **프로그래밍** : 원동현(wonAdam)
+> **프로그래밍** : 원동현([wonAdam](https://github.com/wonAdam))
 
 > **사운드** : 최민석
 
