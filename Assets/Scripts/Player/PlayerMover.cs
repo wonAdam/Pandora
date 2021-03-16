@@ -18,10 +18,8 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] float turnSpeed;
     [SerializeField] AudioClip walkSound;
     [HideInInspector] public PlayerMoveDirection Direction;
-    private PlayerDasher playerDasher;
     private PlayerJumper playerJumper;
     private PlayerArcher playerArcher;
-    private PlayerPusher playerPusher;
     private PlayerStance playerStance;
     private float baseMoveSpeed;
     private Rigidbody myRB;
@@ -34,10 +32,8 @@ public class PlayerMover : MonoBehaviour
     {
         Direction = PlayerMoveDirection.RIGHT;
 
-        playerDasher = GetComponent<PlayerDasher>();
         playerJumper = GetComponent<PlayerJumper>();
         playerArcher = GetComponent<PlayerArcher>();
-        playerPusher = GetComponent<PlayerPusher>();
         playerStance = GetComponent<PlayerStance>();
         myRB = GetComponent<Rigidbody>();
         bodyAnim = GetComponentsInChildren<Animator>()

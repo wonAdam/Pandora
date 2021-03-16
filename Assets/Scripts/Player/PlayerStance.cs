@@ -11,7 +11,7 @@ public class PlayerStance : MonoBehaviour
         MIA, RIGEN, NIBEL, PANDORA
     }
     public PlayerStanceState state;
-    public PlayerStanceState nextReservedState;
+    public PlayerStanceState nextReservedState; // 전환중에 또 전환할 경우를 위해
 
     [SerializeField] Material hairMat;
     [SerializeField] Material clothMat;
@@ -24,8 +24,6 @@ public class PlayerStance : MonoBehaviour
 
     private PlayerArcher playerArcher;
     private PlayerUmbrella playerUmbrella;
-    private PlayerMover playerMover;
-    private PlayerJumper playerJumper;
     private Animator bodyAnim;
     private Animator playerAnim;
     private bool isInitialized = false;
@@ -34,8 +32,6 @@ public class PlayerStance : MonoBehaviour
     {
         playerArcher = GetComponent<PlayerArcher>();
         playerUmbrella = GetComponent<PlayerUmbrella>();
-        playerMover = GetComponent<PlayerMover>();
-        playerJumper = GetComponent<PlayerJumper>();
         bodyAnim = GetComponentsInChildren<Animator>()
             .Where<Animator>(anim => anim.gameObject.GetInstanceID() != gameObject.GetInstanceID()).ToList()[0];
         playerAnim = GetComponent<Animator>();

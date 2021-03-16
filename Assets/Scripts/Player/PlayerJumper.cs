@@ -25,7 +25,6 @@ public class PlayerJumper : MonoBehaviour
 
     [HideInInspector] public bool isOnGround = false;
     [HideInInspector] public bool isJumpable = false;
-    private PlayerArcher playerArcher;
     private PlayerStance playerStance;
     private Animator bodyAnim;
     private Rigidbody myRB;
@@ -34,12 +33,8 @@ public class PlayerJumper : MonoBehaviour
     private float baseHigherAdditiveGravity;
     private float baseLowerAdditiveGravity;
 
-
-
-
     private void Start()
     {
-        playerArcher = GetComponent<PlayerArcher>();
         playerStance = GetComponent<PlayerStance>();
         bodyAnim = GetComponentsInChildren<Animator>()
             .Where<Animator>(anim => anim.gameObject.GetInstanceID() != gameObject.GetInstanceID()).ToList()[0];
@@ -54,10 +49,8 @@ public class PlayerJumper : MonoBehaviour
 
     private void Update()
     {
-
-
         // Check if Grounded
-        CheckNSetIfIsOnGround_OverlapBox();
+        CheckNSetIfIsOnGround();
 
         // Check Player Stance
         ChangeJumpPowerNGravityBasedOnStance();
@@ -151,22 +144,7 @@ public class PlayerJumper : MonoBehaviour
         myRB.AddForce(new Vector3(0f, -amount * Time.deltaTime, 0f), ForceMode.Impulse);
     }
 
-    private void CheckNSetIfIsOnGround_Raycast()
-    {
-        RaycastHit hit;
-        Debug.DrawLine(transform.position, transform.position + Vector3.down * groundDetectLength, Color.red);
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, groundDetectLength, floorMask))
-        {
-            isOnGround = true;
-            isJumpable = false;
-        }
-        else
-        {
-            isOnGround = false;
-        }
-    }
-
-    private void CheckNSetIfIsOnGround_OverlapBox()
+    private void CheckNSetIfIsOnGround()
     {
         //Debug.DrawLine(transform.position + new Vector3(0f, groundDetectLength, 0f), transform.position + new Vector3(0f, 1f, 0f), Color.red);
         if (Physics.OverlapBox(transform.position - new Vector3(0f, groundDetectLength, 0f), feetColliderScale / 2f, Quaternion.identity, (int)floorMask).Length > 0)

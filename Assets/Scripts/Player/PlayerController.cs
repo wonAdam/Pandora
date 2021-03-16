@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     private PlayerJumper playerJumper;
     private PlayerMover playerMover;
-    private PlayerDasher playerDasher;
     private PlayerStance playerStance;
     private PlayerArcher playerArcher;
     private PlayerPusher playerPusher;
@@ -24,7 +23,6 @@ public class PlayerController : MonoBehaviour
     {
         playerJumper = GetComponent<PlayerJumper>();
         playerMover = GetComponent<PlayerMover>();
-        playerDasher = GetComponent<PlayerDasher>();
         playerStance = GetComponent<PlayerStance>();
         playerArcher = GetComponent<PlayerArcher>();
         playerPusher = GetComponent<PlayerPusher>();
@@ -39,151 +37,41 @@ public class PlayerController : MonoBehaviour
 
         // Jump
         if (Input.GetKeyDown(Jump.key))
-        {
-            JumpAfterConditionCheck();
-        }
-
-        //// Right Dash
-        //if (Input.GetKeyDown(Right.key))
-        //{
-        //    RightDashAfterConditionCheck();
-        //}
-
-        //// Left Dash
-        //if (Input.GetKeyDown(Left.key))
-        //{
-        //    LeftDashAfterConditionCheck();
-        //}
+            if (playerJumper.isOnGround)
+                playerJumper.Jump();
+            else if(playerJumper.isJumpable)
+                playerJumper.UseJumpable();
 
         // Move
         if (Input.GetKey(Right.key))
         {
             playerPusher.isMoving = true;
-            RightMoveAfterConditionCheck();
+            playerMover.MoveRight(); // 이동
         }
         else if (Input.GetKey(Left.key))
         {
             playerPusher.isMoving = true;
-            LeftMoveAfterConditionCheck();
+            playerMover.MoveLeft();
         }
         else
-        {
             playerPusher.isMoving = false;
-        }
 
         // Shoot Arrow
         if (Input.GetMouseButtonDown(0))
-        {
-            AimArrowAfterConditionCheck();
-        }
+            if (playerArcher.IsEnable)
+                playerArcher.Aim();
+
         if (Input.GetMouseButtonUp(0))
-        {
-            ShootAfterConditionCheck();
-        }
+            if (playerArcher.IsEnable)
+                playerArcher.Shoot();
 
         // Stance Switch
         if (Input.GetKeyDown(StanceRight.key))
-        {
-            ChangeStateRightAfterConditionCheck();
-        }
+            playerStance.ChangeStateRight();
+
         if (Input.GetKeyDown(StanceLeft.key))
-        {
-            ChangeStateLeftAfterConditionCheck();
-        }
+            playerStance.ChangeStateLeft();
 
-    }
-
-
-    private void JumpAfterConditionCheck()
-    {
-        if (playerJumper.isOnGround)
-        {
-            playerJumper.Jump();
-        }
-        else if (playerJumper.isJumpable)
-        {
-            playerJumper.UseJumpable();
-        }
-    }
-
-    //private void RightDashAfterConditionCheck()
-    //{
-    //    // Right Dashable이라면
-    //    if (playerDasher.dashableState == PlayerDasher.DashableState.RIGHT)
-    //    {
-    //        playerDasher.Dash(); // 대쉬 Exec
-    //    }
-
-    //    else
-    //    {
-    //        playerDasher.SetDashable(PlayerDasher.DashableState.RIGHT); // 대쉬 Set
-    //    }
-    //}
-
-    //private void LeftDashAfterConditionCheck()
-    //{
-    //    // Left Dashable이라면
-    //    if (playerDasher.dashableState == PlayerDasher.DashableState.LEFT)
-    //    {
-    //        playerDasher.Dash(); // 대쉬 Exec 
-    //    }
-
-    //    else
-    //    {
-    //        playerDasher.SetDashable(PlayerDasher.DashableState.LEFT); // 대쉬 Set
-    //    }
-    //}
-
-    private void LeftMoveAfterConditionCheck()
-    {
-        if (!playerDasher)
-        {
-            playerMover.MoveLeft(); // 이동
-            return;
-        }
-        if (!playerDasher.isDashing)
-        {
-            playerMover.MoveLeft(); // 이동
-        }
-    }
-
-    private void RightMoveAfterConditionCheck()
-    {
-        if(!playerDasher)
-        {
-            playerMover.MoveRight(); // 이동
-            return;
-        }
-        if (!playerDasher.isDashing)
-        {
-            playerMover.MoveRight(); // 이동
-        }
-    }
-
-    private void AimArrowAfterConditionCheck()
-    {
-        if (playerArcher.IsEnable)
-        {
-            playerArcher.Aim();
-        }
-    }
-
-    private void ShootAfterConditionCheck()
-    {
-        if (playerArcher.IsEnable)
-        {
-            playerArcher.Shoot();
-        }
-    }
-
-    private void ChangeStateLeftAfterConditionCheck()
-    {
-        playerStance.ChangeStateLeft();
-    }
-
-    private void ChangeStateRightAfterConditionCheck()
-    {
-        playerStance.ChangeStateRight();
     }
 
     public void Disable()
