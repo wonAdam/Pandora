@@ -1,6 +1,6 @@
 # Pandora
 
-[![](https://i9.ytimg.com/vi_webp/HYVr_4Oe1eo/mqdefault.webp?v=5fe2db9e&sqp=CMDl6okG&rs=AOn4CLAfO4xyU5k5QxWzKz_iVp8Qorm_mg)](https://youtu.be/HYVr_4Oe1eo)
+[![판도라 유튜브 썸네일](https://github.com/wonAdam/Pandora/blob/master/pandora.png?raw=true)](https://youtu.be/HYVr_4Oe1eo)
 
 > <Smilegate Challenge Season 2> 에 참여하여 작업한 프로젝트입니다.
 
